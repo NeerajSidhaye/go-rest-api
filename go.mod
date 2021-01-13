@@ -1,3 +1,3 @@
-module github.com/bethecodewithyou/gorest
+module github.com/bethecodewithyou/goservice
 
 go 1.14
