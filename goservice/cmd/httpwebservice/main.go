@@ -32,7 +32,7 @@ func main() {
         */ 
 	})
 
-	// http webservice will be listerning on this port 7070
+	// http webservice will be listenig on any ip address and on port 7070.
 	http.ListenAndServe(":7070", nil) // when handler is nill, DefaultServMux handlder is used.
 
 }
