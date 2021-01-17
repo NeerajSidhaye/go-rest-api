@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"encoding/json"
 	"log"
 	"net/http"
 	"github.com/bethecodewithyou/gohttpwebservice/internal/data"
@@ -21,11 +20,8 @@ func NewProduct(l *log.Logger) *Product {
 func (p *Product) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 
 	productList := data.GetProducts()
-	d, e := json.Marshal(productList)
+	e := productList.ToJSON(rw)
 	if e!=nil {
 		http.Error(rw, "error while marshalling procut list" , http.StatusInternalServerError)
 	}
-
-	rw.Write(d) // writing json back to the response.
-
 }	
