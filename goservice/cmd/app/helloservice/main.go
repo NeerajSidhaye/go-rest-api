@@ -5,12 +5,12 @@ import (
 	"io/ioutil"
 	"net/http"
 )
-
+// a simple http web service which is exposing /hello end point on port 7070.
 func main() {
 
-	http.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/hello", func(rw http.ResponseWriter, r *http.Request) {
 
-		fmt.Println("hello world http web service")
+		fmt.Println("hello GO http web service")
 		data, err := ioutil.ReadAll(r.Body) // r.body - reads the request body
 		if err != nil {
 			http.Error(rw, "error occured", http.StatusInternalServerError) // returns error to the client
@@ -24,7 +24,7 @@ func main() {
 
 		}
 
-		fmt.Fprintf(rw, "hello %s", data) // writes data to the http response.
+		fmt.Fprintf(rw, "HELLO %s\n", data) // writes data to the http response.
 		
 		/*  another way of writing data to the response using response writer
 		rw.WriteHeader(http.StatusAccepted)

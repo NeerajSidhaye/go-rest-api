@@ -10,6 +10,8 @@ import (
 	"github.com/bethecodewithyou/gohttpwebservice/internal/handlers"
 )
 
+// a simple http web service which exposing "/getProducts" end point on port 7070.
+// getProduts returns the list of products using the product handler.
 func main() {
 
 	// creating logger to write on the standard output. in this case, our command terminal.
