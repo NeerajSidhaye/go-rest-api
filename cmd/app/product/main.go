@@ -7,7 +7,7 @@ import (
 	"os"
 	"os/signal"
 	"time"
-	"github.com/bethecodewithyou/restcrud/internal/handlers"
+	"github.com/bethecodewithyou/product/internal/handlers"
 )
 
 func main() {

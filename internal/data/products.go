@@ -7,7 +7,7 @@ import (
 
 //Product : defines the attributes of shoe
 type Product struct {
-	ID         string  `json:"id"` // struct tags or annotations to fields. This will be shown in the final JSON output.
+	ID         int     `json:"id"` // struct tags or annotations to fields. This will be shown in the final JSON output.
 	Sport      string  `json:"sport"`
 	Type       string  `json:"type"`
 	Brand      string  `json:"brand"`
@@ -19,26 +19,43 @@ type Product struct {
 	LaunchDate string  `json:"-"` // fields which has struct tag with dash ( - ), won't be added to the resulsting JSON.
 }
 
-//Products : is a collection of running shoe
+//Products : is a collection of products OR slice of product
 type Products []*Product
 
 //GetProducts : returns list of all running shoes
 func GetProducts() Products {
-	return runningShoeList
+	return productList
 }
 
-//ToJSON : serializes collection of runningshoes to JSON
+//ToJSON : serializes collection of products to JSON
 func (p *Products) ToJSON(w io.Writer) error {
 	encoder := json.NewEncoder(w)
 	return encoder.Encode(p)
 }
 
+//FromJSONtoProduct : desecialize incoming json to our product.
+func (p *Product) FromJSONtoProduct(r io.Reader) error {
+	decoder := json.NewDecoder(r)
+	return decoder.Decode(p)
+}
+
+//AddProduct : adding new products to an existing product list
+func AddProduct(p*Product) {
+	p.ID = nextProductID()
+	productList = append(productList, p)
+}
+
+func nextProductID() int {
+	lastProduct := productList[len(productList)-1]
+	return lastProduct.ID + 1
+}
+
 // example data source - creating hard coded list of shoes for CRUD oprations purpose.
-var runningShoeList = []*Product{
+var productList = []*Product{
 
 	{
 
-		ID:         "1111",
+		ID:         1,
 		Sport:      "Running",
 		Type:       "Netural",
 		Brand:      "Saucony",
@@ -51,7 +68,7 @@ var runningShoeList = []*Product{
 	},
 	{
 
-		ID:         "2222",
+		ID:         2,
 		Sport:      "Running",
 		Type:       "Trail",
 		Brand:      "Altra",
