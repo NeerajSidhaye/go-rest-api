@@ -1,10 +1,8 @@
-## This feature branch "feature/go-http-webservice" exposing two simeple webservice using Go standard libraries.
+## This feature branch "feature/go-http-webservice" exposing two simple webservice using Go standard libraries.
 
 **You will notice that I am using two "main.go" files in this project.**
 
-The reason for this is - my own learning :-)
-
-**/hello service is exposed using a http default handler named "DefaultServeMux"**
+**/hello service is exposed using a http default handler, which is "DefaultServeMux"**
 
 **/getProducts service is exposed with a custom Product handler and a data layer.**
 
@@ -12,8 +10,7 @@ The reason for this is - my own learning :-)
 
 This is basic hello world http service, which exposing /hello end point at port 7070
 
-## <details><summary>Click for demo </summary>
-
+<details><summary>Click for Demo </summary>
 
 ![helloservice](goservice/static/readmeimages/helloservice.gif)
 
@@ -26,7 +23,7 @@ This service returns list of products using a Product handler, which then calls 
     
 Prodcuts data is exposing a method ToJSON which is marshalling collection of products to JSON using go's json NewEncoder.
 
-## <details><summary> click for Demo </summary>
+<details><summary> Click for Demo </summary>
 
 ![productservice](goservice/static/readmeimages/productservice.gif)
 
