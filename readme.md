@@ -2,19 +2,20 @@
 
 **Product REST API is exposed with a custom Product handler and a data layer.**
 
-## GET http://localhost:7070/content/v1/products
+## GET http://<host:port>/v1/products
 
-## POST http://localhost:7070/content/v1/products
+## POST http://<host:port>/v1/products
 
-## PUT http://localhost:7070/content/v1/products/{productId}
+## PUT http://<host:port>/v1/products/{productId}
 
-## DELETE http://localhost:7070/content/v1/products/{productId}
+## DELETE http://<host:port>/v1/products/{productId}
 
-
+<!--
 <details><summary>Click for Demo </summary>
 
 ![helloservice](goservice/static/readmeimages/helloservice.gif)
 
 </details>
+-->
 
 

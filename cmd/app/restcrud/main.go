@@ -25,7 +25,7 @@ func main() {
 	// registers product handler to serve request on url "/products".
 	// this is simple http webservice hence you see the url has 'get' in it "/products"
 	// this registration makes a call to ServeHTTP method of Product handler and from there response is returned.
-	servMux.Handle("/products", productHandler) 
+	servMux.Handle("/v1/products", productHandler) 
 
 
 	// create a new server
