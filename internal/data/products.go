@@ -2,6 +2,7 @@ package data
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 )
 
@@ -27,13 +28,13 @@ func GetProducts() Products {
 	return productList
 }
 
-//ToJSON : serializes collection of products to JSON
+//ToJSON : serialize collection of products to JSON
 func (p *Products) ToJSON(w io.Writer) error {
 	encoder := json.NewEncoder(w)
 	return encoder.Encode(p)
 }
 
-//FromJSONtoProduct : desecialize incoming json to our product.
+//FromJSONtoProduct : deserialize incoming json to as new product.
 func (p *Product) FromJSONtoProduct(r io.Reader) error {
 	decoder := json.NewDecoder(r)
 	return decoder.Decode(p)
@@ -43,6 +44,35 @@ func (p *Product) FromJSONtoProduct(r io.Reader) error {
 func AddProduct(p*Product) {
 	p.ID = nextProductID()
 	productList = append(productList, p)
+}
+
+//UpdateProduct : updating existing product entry.
+func UpdateProduct(id int, p*Product) error {
+	
+	pos, err := getProductPosition(id)
+	
+	if err !=nil {
+		return err
+	}
+
+	p.ID = id
+	productList[pos] = p
+
+	return nil
+}
+
+//ErrProductNotFound : global error variable
+var ErrProductNotFound = fmt.Errorf("product not found")
+
+func getProductPosition(id int) (int, error) {
+
+	for index, p:= range productList {
+		if p.ID == id {
+			return index, nil
+		}
+	}
+	return -1, ErrProductNotFound
+
 }
 
 func nextProductID() int {
@@ -71,7 +101,7 @@ var productList = []*Product{
 		ID:         2,
 		Sport:      "Running",
 		Type:       "Trail",
-		Brand:      "Altra",
+		Brand:      "Altra",	
 		Colour:     "Green",
 		Terrain:    "Trail",
 		Feature:    "Breathable",

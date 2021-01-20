@@ -22,11 +22,10 @@ func main() {
 	// creating serve Mux and registering the produc thandler
 	servMux := http.NewServeMux()
 	
-	// registers product handler to serve request on url "/products".
-	// this is simple http webservice hence you see the url has 'get' in it "/products"
-	// this registration makes a call to ServeHTTP method of Product handler and from there response is returned.
-	servMux.Handle("/v1/products", productHandler) 
-
+	// registers product handler to serve request on url "/".
+	// this is simple REST API and for now it is handling all reqquest on /
+	// this registration makes a call to ServeHTTP method of Product handler.
+	servMux.Handle("/", productHandler)
 
 	// create a new server
 	server := http.Server {
