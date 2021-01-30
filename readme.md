@@ -7,3 +7,13 @@ GET http://<<host:port>>/products
 POST http://<<host:port>>/products
 
 PUT http://<<host:port>>/products/{id}
+
+PATCH http://<<host:port>>/products/{id}
+
+DELETE http://<<host:port>>/products/{id}
+
+<details><summary>Click for Demo </summary>
+
+![gorestgorilla](static/readmeimages/gorestgorilla.gif)
+
+</details>

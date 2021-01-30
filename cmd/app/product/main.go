@@ -33,6 +33,11 @@ func main() {
 	putHandler := servMux.Methods(http.MethodPut).Subrouter()
 	putHandler.HandleFunc("/products/{id:[0-9]+}", productHandler.UpdateProduct)
 
+	patchHandler := servMux.Methods(http.MethodPatch).Subrouter()
+	patchHandler.HandleFunc("/products/{id:[0-9]+}", productHandler.UpdateProductAttribute)
+
+	deleteHandler := servMux.Methods(http.MethodDelete).Subrouter()
+	deleteHandler.HandleFunc("/products/{id:[0-9]+}", productHandler.DeleteProduct)
 
 	// create a new server
 	server := http.Server {
