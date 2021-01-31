@@ -13,14 +13,11 @@ import (
 
 func main() {
 
-	// creating logger to write on the standard output. in this case, our command terminal.
-	// string "Shoe Product API" is prfix which will print to every log statement.
-	logger := log.New(os.Stdout, "Shoe Product API: " , log.LstdFlags)
+	// string "Product API" is prfix which will print to every log statement.
+	logger := log.New(os.Stdout, "Product API: " , log.LstdFlags)
 
-	//creating product handler
 	productHandler := handlers.NewProduct(logger)
 
-	// creating serve Mux and registering the produc thandler
 	servMux := mux.NewRouter()
 	
 	// registers product handler methods to serve request on api end points with specific http methods.
