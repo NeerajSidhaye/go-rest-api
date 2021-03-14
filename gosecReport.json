@@ -1,0 +1,42 @@
+{
+	"issues": [
+		{
+			"engineId": "gosec",
+			"ruleId": "G104",
+			"cwe": {
+				"ID": "703",
+				"URL": "https://cwe.mitre.org/data/definitions/703.html"
+			},
+			"primaryLocation": {
+				"message": "Errors unhandled.",
+				"filePath": "D:\\dev\\go-workspace\\go-rest-gorilla\\internal\\data\\products.go",
+				"textRange": {
+					"startLine": 70,
+					"endLine": 70
+				}
+			},
+			"type": "VULNERABILITY",
+			"severity": "MINOR",
+			"effortMinutes": 5
+		},
+		{
+			"engineId": "gosec",
+			"ruleId": "G104",
+			"cwe": {
+				"ID": "703",
+				"URL": "https://cwe.mitre.org/data/definitions/703.html"
+			},
+			"primaryLocation": {
+				"message": "Errors unhandled.",
+				"filePath": "D:\\dev\\go-workspace\\go-rest-gorilla\\cmd\\app\\product\\main.go",
+				"textRange": {
+					"startLine": 89,
+					"endLine": 89
+				}
+			},
+			"type": "VULNERABILITY",
+			"severity": "MINOR",
+			"effortMinutes": 5
+		}
+	]
+}
