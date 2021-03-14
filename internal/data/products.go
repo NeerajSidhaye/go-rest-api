@@ -8,7 +8,7 @@ import (
 	
 )
 
-//Product : defines the attributes of shoe
+//Product : defines the attributes of Shoe product
 type Product struct {
 	ID         int     `json:"id"` // struct tags or annotations to fields. This will be shown in the final JSON output.
 	Sport      string  `json:"sport"`
@@ -111,15 +111,15 @@ var productList = []*Product{
 
 		ID:         1,
 		Sport:      "Running",
-		Brand:      "Saucony",
+		Brand:      "Altra",
 		Colour:     "Blue",
 		LaunchDate: "Dec-2006",
 	},
 	{
 
 		ID:         2,
-		Sport:      "Running",
-		Brand:      "Altra",	
+		Sport:      "Hiking",
+		Brand:      "NorthFace",	
 		Colour:     "Green",
 		LaunchDate: "Jan-2020",
 	},

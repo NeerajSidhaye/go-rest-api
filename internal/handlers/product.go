@@ -20,7 +20,7 @@ func NewProduct(l *log.Logger) *Product {
 }
 
 //GetProducts : get list of all products
-func (p *Product) GetProducts(rw http.ResponseWriter, r *http.Request) {
+func (p Product) GetProducts(rw http.ResponseWriter, r *http.Request) {
 
 	p.l.Println("handling GET")
 
@@ -32,7 +32,7 @@ func (p *Product) GetProducts(rw http.ResponseWriter, r *http.Request) {
 }
 
 //AddProduct : this will add a new product coming from POST request into existing list of products.
-func (p *Product) AddProduct(rw http.ResponseWriter, r *http.Request) {
+func (p Product) AddProduct(rw http.ResponseWriter, r *http.Request) {
 
 	p.l.Println("handling POST")
 
@@ -50,7 +50,7 @@ func (p *Product) AddProduct(rw http.ResponseWriter, r *http.Request) {
 }
 
 //UpdateProduct : updating a product
-func (p *Product) UpdateProduct(rw http.ResponseWriter, r *http.Request) {
+func (p Product) UpdateProduct(rw http.ResponseWriter, r *http.Request) {
 
 	p.l.Println("handling UPDATE")
 
@@ -84,7 +84,7 @@ func (p *Product) UpdateProduct(rw http.ResponseWriter, r *http.Request) {
 }
 
 //UpdateProductAttribute : partial update of product attributes
-func (p *Product) UpdateProductAttribute(rw http.ResponseWriter, r *http.Request) {
+func (p Product) UpdateProductAttribute(rw http.ResponseWriter, r *http.Request) {
 
 	p.l.Println("handling PATCH")
 	uriParam := mux.Vars(r)
@@ -114,7 +114,7 @@ func (p *Product) UpdateProductAttribute(rw http.ResponseWriter, r *http.Request
 }
 
 //DeleteProduct :
-func (p *Product) DeleteProduct(rw http.ResponseWriter, r *http.Request) {
+func (p Product) DeleteProduct(rw http.ResponseWriter, r *http.Request) {
 
 	uriParams := mux.Vars(r)
 	prodID, err := strconv.Atoi(uriParams["id"])
