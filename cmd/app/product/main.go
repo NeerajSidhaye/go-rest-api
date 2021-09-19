@@ -7,19 +7,48 @@ import (
 	"os"
 	"os/signal"
 	"time"
+
 	"github.com/bethecodewithyou/gorest/gorilla/internal/handlers"
 	"github.com/gorilla/mux"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
+
+var totalRequest = prometheus.NewCounterVec(
+	prometheus.CounterOpts{
+			Name: "http_request_total",
+			Help: "Number of get request",
+	},
+	[]string{"path"},
+)
+
+func prometheusMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request){
+		
+		next.ServeHTTP(w, r)
+
+		totalRequest.With(prometheus.Labels{"path":"/products"}).Inc()
+
+	})
+}
+
+func init(){
+	prometheus.Register(totalRequest)
+}
 
 func main() {
 
-	// string "Product API" is prfix which will print to every log statement.
+	// string "Product API" is prefix which will print to every log statement.
 	logger := log.New(os.Stdout, "Product API: " , log.LstdFlags)
 
 	productHandler := handlers.NewProduct(logger)
 
 	servMux := mux.NewRouter()
-	
+
+	servMux.Use(prometheusMiddleware)
+
+	servMux.Path("/metrics").Handler(promhttp.Handler())
+
 	// registers product handler methods to serve request on api end points with specific http methods.
 	getHandler := servMux.Methods(http.MethodGet).Subrouter()
 	getHandler.HandleFunc("/products", productHandler.GetProducts)
@@ -77,8 +106,8 @@ func main() {
 
 	// gracefully shutting down the server. 
 
-	// this context tells, when all the handlers finished thier work and after that, 
-	// wait for 30 seconds before trigerring server shutdonw.
+	// this context tells, when all the handlers finished their work and after that, 
+	// wait for 30 seconds before trigerring server shutdown.
 	// if there is another request comes within that 30 seconds, then this time will be reset again.
 
 	logger.Println("server is stopping ")
